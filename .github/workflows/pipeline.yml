@@ -1,0 +1,44 @@
+# Hourly: pull the saved data from Vercel Blob, run the pipeline, push back
+# what changed. The site reads it from Blob.
+name: pipeline
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: pipeline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      # zeitgeist/llm.py defaults to OpenCode (the laptop's); the Action uses OpenAI.
+      LLM_PROVIDER: openai
+      WIKI_CONTACT_EMAIL: ${{ secrets.WIKI_CONTACT_EMAIL }}
+      # "Today" is the US day.
+      TZ: America/New_York
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: zeitgeist/blob/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: npm ci
+        working-directory: zeitgeist/blob
+      - run: node sync.mjs pull
+        working-directory: zeitgeist/blob
+      - run: python aggregate.py
+        working-directory: zeitgeist
+      - run: node sync.mjs push
+        working-directory: zeitgeist/blob

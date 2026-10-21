@@ -1,0 +1,12 @@
+{
+  "name": "zeitgeist-blob",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pull": "node sync.mjs pull",
+    "push": "node sync.mjs push"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.0"
+  }
+}

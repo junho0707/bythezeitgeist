@@ -1,0 +1,377 @@
+{
+  "audio": "episodes/midday_2026-10-21/output.wav",
+  "music": "music/bythezeitgeist.mp3",
+  "musicVolume": 0.13031667784522993,
+  "narrationSeconds": 59.13,
+  "edition": "Midday Update",
+  "dateline": "Wed, Oct 21",
+  "site": "bythezeitgeist.com",
+  "cta": "Next: The evening digest, 6:30 pm",
+  "question": "Will you watch the Orionids meteor shower tonight?",
+  "captions": [
+    {
+      "start": 0,
+      "end": 4.12,
+      "lines": [
+        {
+          "text": "Good afternoon. Brought to",
+          "start": 0
+        },
+        {
+          "text": "you by the Zeitgeist.",
+          "start": 2.14
+        }
+      ]
+    },
+    {
+      "start": 4.12,
+      "end": 7.34,
+      "lines": [
+        {
+          "text": "Over fifty thousand people",
+          "start": 4.12
+        },
+        {
+          "text": "looked up who went home on",
+          "start": 5.84
+        }
+      ]
+    },
+    {
+      "start": 7.34,
+      "end": 10.14,
+      "lines": [
+        {
+          "text": "Dancing with the Stars",
+          "start": 7.34
+        },
+        {
+          "text": "today, the latest result",
+          "start": 8.26
+        }
+      ]
+    },
+    {
+      "start": 10.14,
+      "end": 13.08,
+      "lines": [
+        {
+          "text": "from the celebrity dance",
+          "start": 10.14
+        },
+        {
+          "text": "competition.",
+          "start": 11.4
+        }
+      ]
+    },
+    {
+      "start": 13.08,
+      "end": 16.44,
+      "lines": [
+        {
+          "text": "The Slow Horses season six",
+          "start": 13.08
+        },
+        {
+          "text": "finale recap drew over",
+          "start": 14.64
+        }
+      ]
+    },
+    {
+      "start": 16.44,
+      "end": 19.5,
+      "lines": [
+        {
+          "text": "twenty thousand searches",
+          "start": 16.44
+        },
+        {
+          "text": "today, the latest episode",
+          "start": 17.64
+        }
+      ]
+    },
+    {
+      "start": 19.5,
+      "end": 21.68,
+      "lines": [
+        {
+          "text": "of the spy thriller",
+          "start": 19.5
+        },
+        {
+          "text": "series.",
+          "start": 20.44
+        }
+      ]
+    },
+    {
+      "start": 21.68,
+      "end": 24.54,
+      "lines": [
+        {
+          "text": "First look photos of",
+          "start": 21.68
+        },
+        {
+          "text": "Dwayne Johnson in the film",
+          "start": 23.18
+        }
+      ]
+    },
+    {
+      "start": 24.54,
+      "end": 28.1,
+      "lines": [
+        {
+          "text": "Lizard Music drew over ten",
+          "start": 24.54
+        },
+        {
+          "text": "thousand searches today,",
+          "start": 26.87
+        }
+      ]
+    },
+    {
+      "start": 28.1,
+      "end": 31.3,
+      "lines": [
+        {
+          "text": "giving fans an early look",
+          "start": 28.1
+        },
+        {
+          "text": "at the project.",
+          "start": 30.06
+        }
+      ]
+    },
+    {
+      "start": 31.3,
+      "end": 34.4,
+      "lines": [
+        {
+          "text": "A submarine designated U",
+          "start": 31.3
+        },
+        {
+          "text": "six seventy-two has been",
+          "start": 33.28
+        }
+      ]
+    },
+    {
+      "start": 34.4,
+      "end": 37.4,
+      "lines": [
+        {
+          "text": "found off the Devon coast,",
+          "start": 34.4
+        },
+        {
+          "text": "sending people to search",
+          "start": 36
+        }
+      ]
+    },
+    {
+      "start": 37.4,
+      "end": 39.36,
+      "lines": [
+        {
+          "text": "for details today.",
+          "start": 37.4
+        }
+      ]
+    },
+    {
+      "start": 39.36,
+      "end": 42,
+      "lines": [
+        {
+          "text": "The Orionids meteor shower",
+          "start": 39.36
+        },
+        {
+          "text": "is lighting up searches",
+          "start": 40.86
+        }
+      ]
+    },
+    {
+      "start": 42,
+      "end": 45.16,
+      "lines": [
+        {
+          "text": "today as people look for",
+          "start": 42
+        },
+        {
+          "text": "the annual display of",
+          "start": 43.9
+        }
+      ]
+    },
+    {
+      "start": 45.16,
+      "end": 46.8,
+      "lines": [
+        {
+          "text": "shooting stars.",
+          "start": 45.16
+        }
+      ]
+    },
+    {
+      "start": 46.8,
+      "end": 49.2,
+      "lines": [
+        {
+          "text": "Will you watch the",
+          "start": 46.8
+        },
+        {
+          "text": "Orionids meteor shower",
+          "start": 47.92
+        }
+      ]
+    },
+    {
+      "start": 49.2,
+      "end": 52.26,
+      "lines": [
+        {
+          "text": "tonight? Tell us in the",
+          "start": 49.2
+        },
+        {
+          "text": "comments. Brought to you",
+          "start": 50.84
+        }
+      ]
+    },
+    {
+      "start": 52.26,
+      "end": 55.68,
+      "lines": [
+        {
+          "text": "by the Zeitgeist. Next,",
+          "start": 52.26
+        },
+        {
+          "text": "the evening digest,",
+          "start": 54.5
+        }
+      ]
+    },
+    {
+      "start": 55.68,
+      "end": 58.54,
+      "lines": [
+        {
+          "text": "tonight at six thirty:",
+          "start": 55.68
+        },
+        {
+          "text": "what the day was about.",
+          "start": 58.1
+        }
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "kind": "intro",
+      "start": 0,
+      "end": 4.12
+    },
+    {
+      "kind": "story",
+      "start": 4.12,
+      "end": 13.08,
+      "section": "Today",
+      "number": 1,
+      "title": "Dancing with the Stars",
+      "stat": {
+        "value": 50000,
+        "unit": "searches",
+        "plus": true,
+        "source": "Google"
+      },
+      "image": "episodes/midday_2026-10-21/images/01.jpg",
+      "credit": "Photo: Prime Cinematics · Pexels License (Pexels)"
+    },
+    {
+      "kind": "story",
+      "start": 13.08,
+      "end": 21.68,
+      "section": "Today",
+      "number": 2,
+      "title": "Slow Horses Finale",
+      "stat": {
+        "value": 20000,
+        "unit": "searches",
+        "plus": true,
+        "source": "Google"
+      },
+      "image": "episodes/midday_2026-10-21/images/02.jpg",
+      "credit": "Photo: cottonbro studio · Pexels License (Pexels)"
+    },
+    {
+      "kind": "story",
+      "start": 21.68,
+      "end": 31.3,
+      "section": "Today",
+      "number": 3,
+      "title": "Lizard Music First Look",
+      "stat": {
+        "value": 10000,
+        "unit": "searches",
+        "plus": true,
+        "source": "Google"
+      },
+      "image": "episodes/midday_2026-10-21/images/03.jpg",
+      "credit": "Photo: Tima Miroshnichenko · Pexels License (Pexels)"
+    },
+    {
+      "kind": "story",
+      "start": 31.3,
+      "end": 39.36,
+      "section": "Today",
+      "number": 4,
+      "title": "Submarine Found Off Devon",
+      "stat": {
+        "value": 5000,
+        "unit": "searches",
+        "plus": true,
+        "source": "Google"
+      },
+      "image": "episodes/midday_2026-10-21/images/04.jpg",
+      "credit": "Photo: Arjanne Holsappel · Pexels License (Pexels)"
+    },
+    {
+      "kind": "story",
+      "start": 39.36,
+      "end": 46.8,
+      "section": "Today",
+      "number": 5,
+      "title": "Orionids Meteor Shower",
+      "stat": {
+        "value": 5000,
+        "unit": "searches",
+        "plus": true,
+        "source": "Google"
+      },
+      "image": "episodes/midday_2026-10-21/images/05.jpg",
+      "credit": "Photo: Eclipse Chasers · Pexels License (Pexels)"
+    },
+    {
+      "kind": "outro",
+      "start": 46.8,
+      "end": 59.13
+    }
+  ]
+}

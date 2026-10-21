@@ -1,0 +1,41 @@
+*:Zone.Identifier
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# API keys
+.env
+zeitgeist/.env
+
+# Pipeline log
+zeitgeist/run.log
+
+# Blob sync
+zeitgeist/blob/node_modules/
+zeitgeist/output/.manifest.json
+.vercel
+.env*
+
+# Pipeline data lives in Vercel Blob; local copies stay local
+zeitgeist/output/
+
+# Turso integration helper files
+web/.agents/
+web/.claude/
+web/skills-lock.json
+
+# Drafts to post by hand (video/zg.sh)
+/to-post/
+
+# Private working notes
+/.notes/
+
+# Video pipeline: output, envs, licensed music, generated preview props
+video/episodes/
+video/music/
+video/.venv-captions
+video/remotion/node_modules/
+video/remotion/public/episodes/
+video/remotion/public/music
+video/remotion/public/zeitgeist.json

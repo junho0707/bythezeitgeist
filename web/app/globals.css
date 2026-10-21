@@ -1,0 +1,1717 @@
+@import "tailwindcss";
+
+/*
+ * Editorial minimalism. Black text, white paper, hairline rules.
+ * Hierarchy comes from type scale and placement — never boxes, shadows or radius.
+ */
+
+:root {
+  --font-brand: var(--font-brand-face), var(--font-editorial);
+  --font-editorial: var(--font-editorial-face), "Newsreader", Georgia, serif;
+  --font-ui: var(--font-ui-face), "Inter", Arial, sans-serif;
+
+  --text-primary: #121212;
+  --text-secondary: #555555;
+  --text-muted: #727272;
+  --accent: #b00020;
+
+  --background: #ffffff;
+  --surface-subtle: #f7f7f5;
+
+  --border-light: #dadada;
+  --border-dark: #121212;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --content-width: 1240px;
+  --article-width: 680px;
+  --gutter: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-editorial);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.shell {
+  max-width: calc(var(--content-width) + 2 * var(--space-6));
+  margin: 0 auto;
+  padding: 0 var(--space-6) var(--space-8);
+}
+
+/* ------------------------------------------------------------------ */
+/* Masthead                                                            */
+/* ------------------------------------------------------------------ */
+
+.masthead {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.utility {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.date-line {
+  margin: 0;
+  font-weight: 600;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  padding: var(--space-4) 0 var(--space-5);
+  font-family: var(--font-brand);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.wordmark:hover {
+  text-decoration: none;
+}
+
+/* "By the" at about 60% so "Zeitgeist" is the word people remember. */
+.wordmark-by {
+  /* A word space in "By the" units: same rhythm as between By and the. */
+  margin-right: 0.28em;
+  font-size: clamp(24px, 3.8vw, 40px);
+  font-weight: 600;
+  font-variation-settings: "opsz" 72, "SOFT" 0, "WONK" 1;
+  letter-spacing: -0.02em;
+}
+
+.wordmark-name {
+  font-size: clamp(40px, 6.2vw, 66px);
+  font-variation-settings: "opsz" 60, "SOFT" 0, "WONK" 1;
+  letter-spacing: -0.035em;
+}
+
+.wordmark-i {
+  position: relative;
+}
+
+.wordmark-i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.32em;
+  width: 0.15em;
+  height: 0.15em;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+.section-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-dark);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.section-nav a.on {
+  color: var(--accent);
+}
+
+.nav-sep {
+  width: 1px;
+  background: var(--border-light);
+}
+
+/* ------------------------------------------------------------------ */
+/* Auth (utility bar)                                                  */
+/* ------------------------------------------------------------------ */
+
+.auth-signed,
+.auth-bar {
+  position: relative;
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.auth-signed .byline {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.auth-signed a,
+.auth-signed button,
+.auth-bar > button {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.auth-bar > button {
+  border: 1px solid var(--border-dark);
+  padding: 5px 10px;
+}
+
+.auth-card {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--space-2));
+  width: 280px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--background);
+  border: 1px solid var(--border-dark);
+  text-align: left;
+}
+
+/* Full width, like "Continue with Google" below it. */
+form.auth-card button[type="submit"] {
+  align-self: stretch;
+  text-align: center;
+}
+
+.auth-note {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.auth-link {
+  align-self: flex-start;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+
+.auth-or {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.auth-google {
+  display: block;
+  text-align: center;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-dark);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.auth-google:hover {
+  background: var(--border-light);
+}
+
+/* ------------------------------------------------------------------ */
+/* Form controls                                                       */
+/* ------------------------------------------------------------------ */
+
+.auth-card input,
+.comment-form textarea,
+.reply-form textarea {
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: 0;
+  background: var(--background);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.comment-form textarea,
+.reply-form textarea {
+  font-family: var(--font-editorial);
+  font-size: 17px;
+  line-height: 1.5;
+  min-height: 96px;
+}
+
+.auth-card input:focus,
+.comment-form textarea:focus,
+.reply-form textarea:focus {
+  outline: none;
+  border-color: var(--border-dark);
+}
+
+.auth-card button[type="submit"],
+.comment-form button,
+.reply-form button {
+  align-self: flex-start;
+  background: var(--text-primary);
+  color: var(--background);
+  border: 1px solid var(--text-primary);
+  border-radius: 0;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-card button[type="submit"]:hover,
+.comment-form button:hover,
+.reply-form button:hover {
+  background: #333;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.form-error {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Type primitives                                                     */
+/* ------------------------------------------------------------------ */
+
+.hl {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+/* Sources like Google Trends send lowercase terms; headlines are sentence case. */
+.hl::first-letter,
+.link-title::first-letter {
+  text-transform: uppercase;
+}
+
+.hl-hero {
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 72;
+}
+
+.hl-display {
+  font-size: 54px;
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  font-variation-settings: "opsz" 72;
+}
+
+.hl-lead {
+  font-size: 44px;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72;
+}
+
+.hl-feature {
+  font-size: 30px;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.hl-col {
+  font-size: 28px;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.dek {
+  margin: var(--space-2) 0 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.dek-lead {
+  font-size: 20px;
+  line-height: 1.4;
+  max-width: 34em;
+}
+
+.story-label,
+.rank-tag {
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.rank-tag span {
+  color: var(--border-light);
+  margin: 0 2px;
+}
+
+.figure-num,
+.stat-value {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.figure-num {
+  font-family: var(--font-editorial);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reading column                                                      */
+/* ------------------------------------------------------------------ */
+
+/* Every page reads top to bottom in one column, on every screen size. */
+.column {
+  max-width: 760px;
+  margin: var(--space-6) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.page-head {
+  margin: var(--space-4) 0 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Front page: trending now · today · this week, side by side          */
+/* ------------------------------------------------------------------ */
+
+.front {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: var(--space-5);
+}
+
+.front > .horizon {
+  min-width: 0;
+}
+
+/* Lists in pairs (trending now | today; this week's Google | Wikipedia),
+   split by a hairline. Each pair shares the front grid's row lines
+   (subgrid), so story N on the left sits level with story N on the right
+   however long either headline runs. */
+.front > .horizon.pair {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span var(--section-rows);
+  align-content: start;
+}
+
+.front > .horizon.pair > .story-list {
+  grid-template-rows: subgrid;
+  grid-row: span var(--rows);
+}
+
+.front > .horizon.left {
+  grid-column: 1;
+  padding-right: var(--space-6);
+}
+
+.front > .horizon.right {
+  grid-column: 2;
+  padding-left: var(--space-6);
+  border-left: 1px solid var(--border-light);
+}
+
+/* A full-width heading over a pair, e.g. "This week". */
+.front > .front-band {
+  grid-column: 1 / -1;
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-4);
+}
+
+.front-band .horizon-label a {
+  color: inherit;
+}
+
+/* Under a band, the pair's own headings step down. */
+.front > .front-band ~ .horizon.pair .horizon-head {
+  border-bottom-color: var(--border-light);
+}
+
+.front > .front-band ~ .horizon.pair .horizon-label {
+  font-size: 18px;
+}
+
+.front > .method {
+  grid-column: 1 / -1;
+  margin-top: var(--space-7);
+}
+
+/* Full-list pages (/trending/...) use the whole width too. */
+.list-page {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.list-page > .list-head {
+  border-top: 0;
+  padding: 0 0 var(--space-2);
+  border-bottom: 1px solid var(--border-dark);
+  margin-bottom: calc(-1 * var(--space-7));
+}
+
+.list-head .horizon-label {
+  font-size: 36px;
+  letter-spacing: -0.015em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Horizons (trending now / today / this week / this month)            */
+/* ------------------------------------------------------------------ */
+
+.horizon-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--border-dark);
+}
+
+.horizon-label {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* On the front the nav rule opens the page; each window gets one rule under its name. */
+.front .horizon-head {
+  border-top: 0;
+  padding: 0 0 var(--space-2);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.front .horizon-label {
+  font-size: 24px;
+}
+
+.horizon-fresh {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.horizon-empty {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.see-all {
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ */
+/* Story row: rank · headline, summary, meta — the whole row is a link  */
+/* ------------------------------------------------------------------ */
+
+.story-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.story-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.story-row:hover .story-link,
+.story-row:hover .read-more {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.story-link:focus-visible {
+  outline: none;
+}
+
+.story-row:has(.story-link:focus-visible) {
+  outline: 2px solid var(--border-dark);
+  outline-offset: 2px;
+}
+
+.story-rank {
+  padding-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.story-body {
+  min-width: 0;
+}
+
+.story-title {
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.story-summary {
+  margin: var(--space-1) 0 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.story-row .stat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+
+.stat-value {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stat-unit {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Optional picture beside the top stories. */
+.story-row.has-image {
+  grid-template-columns: 22px minmax(0, 1fr) 132px;
+}
+
+.story-image {
+  width: 132px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--surface-subtle);
+}
+
+/* Three across leaves less room: a smaller picture keeps the meta line
+   ("2M+ Google searches  Read more") on one line. */
+.story-list.cols-3 > .story-row.has-image {
+  grid-template-columns: 22px minmax(0, 1fr) 104px;
+}
+
+.story-list.cols-3 .story-image {
+  width: 104px;
+}
+
+.actions > * {
+  white-space: nowrap;
+}
+
+/* Lists in columns: rows read left to right; hairlines keep the rhythm. */
+.story-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Multi-column lists fill row by row (1, 2, 3 across, then 4, 5, 6), so
+   stories at the same rank level sit side by side; hairlines sit under
+   each story so no column starts with a rule. */
+.story-list.cols-2,
+.story-list.cols-3 {
+  column-gap: var(--space-6);
+}
+
+.story-list.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.story-list.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-list.cols-2 > .story-row,
+.story-list.cols-3 > .story-row {
+  border-top: 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.story-list:is(.cols-2, .cols-3) + .see-all {
+  border-top: 0;
+}
+
+.story-list > .story-row:first-child {
+  border-top: 0;
+}
+
+/* Actions: quiet text buttons, never icon soup. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-4);
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.meta-stat {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.read-more {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.action-source {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.action {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.action:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.method {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.method p {
+  margin: 0 0 var(--space-1);
+}
+
+/* Full-list pages: one list down the page, spread across the width.
+   Rank | title, headline right under it, then the number and "Read more" —
+   read top to bottom. Rows stay tight; any extra height (from a picture)
+   goes below the meta line, never between title and headline. */
+.story-list.wide > .story-row {
+  grid-template-columns: 56px minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: var(--space-6);
+  padding: var(--space-5) 0;
+}
+
+.story-list.wide > .story-row.has-image {
+  grid-template-columns: 56px minmax(0, 1fr) 180px;
+}
+
+.story-list.wide .story-body {
+  display: contents;
+}
+
+.story-list.wide .story-rank {
+  grid-row: 1 / span 3;
+  padding-top: 0;
+  font-family: var(--font-editorial);
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+.story-list.wide .story-title {
+  grid-column: 2;
+  font-size: 25px;
+  line-height: 1.15;
+  max-width: 40em;
+}
+
+.story-list.wide .story-summary {
+  grid-column: 2;
+  margin-top: var(--space-1);
+  font-size: 18px;
+  max-width: 48em;
+}
+
+.story-list.wide .actions {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: start;
+  margin-top: var(--space-2);
+  font-size: 13px;
+}
+
+.story-list.wide .story-image {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  width: 180px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Day calendar: a saved day shows its top five and opens the full day */
+/* ------------------------------------------------------------------ */
+
+/* Month headings on the calendar page: no rule of their own, so only the
+   page title's line sits above them, at the same gap as a list's first row. */
+.day-section > .horizon-head {
+  border-top: 0;
+  padding-top: var(--space-5);
+}
+
+.day-cal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: 1px solid var(--border-light);
+  border-left: 1px solid var(--border-light);
+  margin-top: var(--space-3);
+}
+
+.day-cal-weekday {
+  padding: var(--space-2) var(--space-3);
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.day-cell {
+  position: relative;
+  min-height: 168px;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.day-cell.unsaved .day-num,
+.day-cell.pad {
+  color: var(--text-muted);
+}
+
+.day-num {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-editorial);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Only the phone layout, where the grid becomes a list, names the weekday. */
+.day-weekday {
+  display: none;
+}
+
+.day-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.day-cell:hover .day-top li,
+.day-cell:hover .day-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.day-cell:hover {
+  background: var(--surface-subtle);
+}
+
+.day-top {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: day;
+}
+
+.day-top li {
+  counter-increment: day;
+  overflow: hidden;
+  padding: 2px 0;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.day-top li::before {
+  content: counter(day);
+  display: inline-block;
+  width: 1.1em;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.day-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-top: calc(-1 * var(--space-5));
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Column page numbers are buttons (no navigation): reset them to text. */
+.pager-pages button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.pager-pages button:hover {
+  color: var(--text-primary);
+}
+
+/* A column's own pager, under its last story. */
+.horizon.pair > .pager {
+  justify-content: center;
+  margin-top: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+  align-self: start;
+}
+
+.pager-pages {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.pager-pages a,
+.pager-pages span,
+.pager-pages button {
+  min-width: 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.pager-pages .on {
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-dark);
+}
+
+/* ------------------------------------------------------------------ */
+/* Story page                                                          */
+/* ------------------------------------------------------------------ */
+
+.story-page {
+  gap: var(--space-6);
+  max-width: 1080px;
+}
+
+/* Title and text keep a reading width; the tags row spans the page so
+   Share lines up with the Sources column's edge. */
+.story-head > .hl-display,
+.story-head > .story-brief {
+  max-width: 760px;
+}
+
+.story-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  /* One column: sources right under the text, then the feed. */
+  .story-cols { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  .story-cols > .story-block { order: -1; }
+}
+
+.story-head .hl-display {
+  margin-top: var(--space-2);
+}
+
+.story-brief {
+  margin: var(--space-4) 0 0;
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* Where it ranks and its number, stacked, then a hairline and room before
+   the title: at a glance the title stands alone. */
+.story-tags {
+  margin: 0 0 var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-light);
+  line-height: 1.7;
+}
+
+.story-share {
+  margin: var(--space-4) 0 0;
+}
+
+.block-title {
+  margin: 0 0 var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--border-dark);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link-list li + li {
+  border-top: 1px solid var(--border-light);
+}
+
+.link-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) 0;
+}
+
+.link-list a:hover {
+  text-decoration: none;
+}
+
+.link-list a:hover .link-title {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.link-outlet {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.link-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.link-title::after {
+  content: " ↗";
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* The Feed heading's own rule is the only one. */
+.story-comments .comments {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.back-link {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+}
+/* ------------------------------------------------------------------ */
+/* Comments                                                            */
+/* ------------------------------------------------------------------ */
+
+.comments {
+  margin-top: var(--space-7);
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--border-dark);
+}
+
+.comments h2:not(.block-title) {
+  margin: 0 0 var(--space-4);
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.empty,
+.as-of,
+.metric {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  margin-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+}
+
+.comment .comment {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.vote-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.vote-col button,
+.text-btn,
+.reorder button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+}
+
+.vote-col button {
+  font-size: 10px;
+}
+
+.vote-col button.on {
+  color: var(--accent);
+}
+
+.text-btn {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.comment-meta {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.comment-meta strong {
+  color: var(--text-primary);
+  margin-right: var(--space-2);
+}
+
+.comment-body {
+  margin: var(--space-1) 0 var(--space-2);
+  font-size: 17px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.comment-form,
+.reply-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 var(--space-5);
+}
+
+/* ------------------------------------------------------------------ */
+/* Legal pages and footer                                              */
+/* ------------------------------------------------------------------ */
+
+.legal {
+  max-width: 680px;
+  font-family: var(--font-editorial);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
+.legal h2 {
+  margin: var(--space-6) 0 var(--space-2);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.legal ul {
+  padding-left: var(--space-5);
+}
+
+.legal li + li {
+  margin-top: var(--space-2);
+}
+
+.legal a {
+  color: inherit;
+}
+
+.legal-updated {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.site-foot {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  margin: var(--space-8) 0 var(--space-6);
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.site-foot a {
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Tablet: three-column lists drop to two. */
+@media (max-width: 1100px) {
+  .story-list.cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phone: one window after another, one story per line. */
+@media (max-width: 700px) {
+  .front { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-6); }
+  .front > .horizon.pair {
+    display: block;
+    grid-column: 1;
+    grid-row: auto;
+    padding: 0;
+    border-left: 0;
+    margin-top: 0;
+  }
+  .front > .front-band { margin: var(--space-4) 0 0; }
+  .front > .method { margin-top: 0; }
+  .story-list.cols-2,
+  .story-list.cols-3 {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+  .story-list > .story-row:nth-child(n + 2) { border-top: 1px solid var(--border-light); }
+  .story-list:is(.cols-2, .cols-3) > .story-row { border-bottom: 0; }
+  /* Wide list folds back into the plain row: rank, then everything stacked. */
+  .story-list.wide > .story-row {
+    grid-template-columns: 28px minmax(0, 1fr);
+    column-gap: var(--space-3);
+    padding: var(--space-4) 0;
+  }
+  .story-list.wide .story-rank { font-size: 22px; }
+  .story-list.wide .story-title { font-size: 20px; }
+  .story-list.wide .story-summary { font-size: 16px; }
+  .story-list.wide .actions { font-size: 12px; }
+  .story-list.wide > .story-row.has-image { grid-template-columns: 28px minmax(0, 1fr) 96px; }
+  .story-list.wide .story-image { width: 96px; }
+  .story-row.has-image { grid-template-columns: 22px minmax(0, 1fr) 96px; }
+  .story-image { width: 96px; }
+  .list-head .horizon-label { font-size: 30px; }
+}
+
+@media (max-width: 760px) {
+  /* Calendar becomes a list of the saved days. */
+  .day-cal { grid-template-columns: minmax(0, 1fr); border-left: 0; }
+  .day-cal > .day-cell { border-bottom: 1px solid var(--border-light); }
+  .day-cal-weekday, .day-cell.pad, .day-cell.unsaved { display: none; }
+  .day-cell { min-height: 0; border-right: 0; padding: var(--space-3) 0; }
+  .day-weekday { display: inline; }
+
+  .shell {
+    padding: 0 var(--space-4) var(--space-7);
+  }
+
+  .utility { font-size: 11px; }
+
+  /* Centered like the wordmark; wraps to a second centered line if it must. */
+  .section-nav {
+    gap: var(--space-2) 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .nav-sep { display: none; }
+
+  .column { gap: var(--space-6); margin-top: var(--space-5); }
+
+  .hl-display { font-size: 36px; }
+  .hl-lead { font-size: 32px; }
+
+  .story-row { padding: var(--space-3) 0; }
+  .story-title { font-size: 19px; }
+  .story-summary { font-size: 15px; }
+
+  .story-brief { font-size: 18px; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Modal: a story or a day over the list it was opened from             */
+/* ------------------------------------------------------------------ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-6) var(--space-4);
+  background: rgb(0 0 0 / 0.45);
+}
+
+.modal-panel {
+  position: relative;
+  width: min(1080px, 100%);
+  max-height: calc(100vh - 2 * var(--space-6));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-6) var(--space-7) var(--space-7);
+  background: var(--background);
+  box-shadow: 0 12px 48px rgb(0 0 0 / 0.25);
+}
+
+.modal-panel:focus {
+  outline: none;
+}
+
+.modal-panel > .story-page,
+.modal-panel > .list-page {
+  margin-top: 0;
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-5)) 0 var(--space-3);
+  border: 0;
+  background: var(--background);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--accent);
+}
+
+/* Phones: the same popup, a card over the dimmed page with a margin round it. */
+@media (max-width: 720px) {
+  .modal-backdrop { padding: var(--space-3); }
+  .modal-panel {
+    max-height: calc(100dvh - 2 * var(--space-3));
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+  /* No height of its own, so the page below keeps the full width; only the
+     first line makes room for it. */
+  .modal-close { margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) -36px 0; }
+  .modal-panel > .list-page > .list-head,
+  .modal-panel > .story-page .story-tags { padding-right: 36px; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Search box (masthead)                                               */
+/* ------------------------------------------------------------------ */
+
+.utility-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.search-box input {
+  width: 220px;
+  height: 30px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-light);
+  border-radius: 0;
+  background: var(--background);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--border-dark);
+}
+
+.search-box {
+  position: relative;
+}
+
+/* Matching stories under the box, as you type. */
+.search-drop {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 40;
+  width: 420px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  background: var(--background);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  text-align: left;
+}
+
+.search-hit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.search-hit:hover,
+.search-hit.on {
+  background: var(--surface-subtle);
+  text-decoration: none;
+}
+
+.search-hit-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.search-hit-title {
+  font-family: var(--font-editorial);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.search-hit-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: var(--font-editorial);
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--text-secondary);
+}
+
+.search-hit-seen {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.search-hit img {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.search-none,
+.search-all {
+  display: block;
+  margin: 0;
+  padding: var(--space-3);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.search-none {
+  color: var(--text-muted);
+  font-weight: 400;
+  border-bottom: 1px solid var(--border-light);
+}
+
+
+.date-short {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .search-box input { width: 160px; }
+}
+
+/* Phones: short date, the search box takes what's left, Sign in stays one line. */
+@media (max-width: 560px) {
+  .date-long { display: none; }
+  .date-short { display: inline; white-space: nowrap; }
+  .utility-right { flex: 1; min-width: 0; justify-content: flex-end; }
+  .search-box { flex: 1; min-width: 0; max-width: 220px; }
+  .search-box input { width: 100%; }
+  .auth-bar > button { white-space: nowrap; }
+  /* Under the whole masthead row, not hanging off the button. */
+  .auth-bar, .auth-signed { position: static; }
+  .utility { position: relative; }
+  .auth-card { width: auto; left: 0; right: 0; top: 100%; }
+  .search-box { position: static; }
+  .search-drop { left: 0; right: 0; top: 100%; width: auto; max-width: none; }
+}
+
+/* /tiktok: post a staged video to the connected TikTok account. */
+.tt {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  padding: var(--space-5) 0 var(--space-8);
+}
+.tt-lead {
+  font-family: var(--font-editorial);
+  font-size: 19px;
+  margin: 0 0 var(--space-5);
+}
+.tt-button {
+  display: inline-block;
+  background: var(--text-primary);
+  color: var(--background);
+  border: 0;
+  padding: var(--space-3) var(--space-5);
+  font: 600 15px var(--font-ui);
+  cursor: pointer;
+}
+.tt-button:disabled {
+  background: var(--border-light);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.tt-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: auto;
+  font: inherit;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.tt-account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border-light);
+}
+.tt-account img {
+  border-radius: 50%;
+}
+.tt-name {
+  font-weight: 700;
+}
+.tt-meta {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 0;
+}
+.tt-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+.tt-preview video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: var(--text-primary);
+  display: block;
+}
+.tt-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: var(--article-width);
+}
+.tt-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.tt-field > span {
+  font-weight: 700;
+}
+.tt-field select,
+.tt-field textarea {
+  font: inherit;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-dark);
+  background: var(--background);
+  color: var(--text-primary);
+  width: 100%;
+}
+.tt-checks {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+.tt-checks.tt-stack {
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.tt-checks label,
+.tt-toggle {
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+.tt-checks label.is-off {
+  color: var(--text-muted);
+}
+.tt-toggle {
+  font-weight: 700;
+}
+.tt-note {
+  margin: 0;
+  color: var(--accent);
+}
+.tt-consent {
+  margin: 0;
+  color: var(--text-secondary);
+}
+.tt-consent a {
+  text-decoration: underline;
+}
+.tt-status {
+  margin: 0;
+  font-weight: 600;
+}
+.tt-error {
+  color: var(--accent);
+  margin: 0 0 var(--space-4);
+}
+@media (max-width: 720px) {
+  .tt-grid {
+    grid-template-columns: 1fr;
+  }
+  .tt-preview {
+    max-width: 260px;
+  }
+}
