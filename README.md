@@ -67,26 +67,3 @@ docs/        architecture and design decisions
 
 Each folder has its own README with setup and details:
 [web](web/README.md) · [zeitgeist](zeitgeist/README.md) · [video](video/README.md)
-
-## A few things worth a look
-
-- **Captions keep the script's exact text.** Whisper supplies only the
-  timing, and its words are aligned back onto the script with `difflib`, so
-  names and punctuation are never misheard
-  ([`video/pipeline/captions.py`](video/pipeline/captions.py)).
-- **Automatic take check.** Every narration is transcribed and compared with
-  the script. A take that drops or garbles words is re-recorded once before
-  rendering ([`video/pipeline/check.py`](video/pipeline/check.py)).
-- **Photos that match the story.** Candidates come only from license-filtered
-  Wikimedia Commons (PD / CC0 / CC BY / CC BY-SA) and Pexels. A vision model
-  scores each one against the story and suggests better searches when nothing
-  fits, and credits go into every post
-  ([`video/pipeline/images.py`](video/pipeline/images.py)).
-- **A cheap, cache-friendly data layer.** The pipeline writes each file under
-  its content hash, and the site re-reads only the manifest, at most once a
-  minute ([`web/lib/store.ts`](web/lib/store.ts),
-  [`zeitgeist/blob/sync.mjs`](zeitgeist/blob/sync.mjs)).
-- **Summaries with guardrails.** Banned-phrase and "talks about its sources"
-  filters, a retry that tells the model what it got wrong, and flags that let
-  the site hide sports, junk and non-English topics
-  ([`zeitgeist/summarize.py`](zeitgeist/summarize.py)).
